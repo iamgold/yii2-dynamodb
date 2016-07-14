@@ -11,6 +11,7 @@ namespace iamgold\yii2\dynamodb;
  */
 
 use Exception;
+use Yii;
 use yii\base\InvalidConfigException;
 
 class Connection extends \yii\base\Component
