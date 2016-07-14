@@ -1,0 +1,22 @@
+{
+    "name": "iamgold/yii2/dynamodb",
+    "description": "This project is used to access Aws DynamoDb in Yii2.",
+    "keywords": ["iamgold", "yii2", "dynamodb", "composer"],
+    "type": "project",
+    "version": "0.1.0",
+    "time": "2016-07-14",
+    "license": "MIT",
+    "support": {
+        "source": "https://github.com/iamgold/yii2-dynamodb",
+        "issue": "https://github.com/iamgold/yii2-dynamodb/issues",
+        "wiki": "https://github.com/iamgold/yii2-dynamodb/wiki"
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "~2.0.9",
+        "aws/aws-sdk-php": "~3.18.28"
+    },
+    "autoload": {
+        "psr-4": {"iamgold\\yii2\\dynamodb": "src/"}
+    }
+}
