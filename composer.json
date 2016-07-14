@@ -17,6 +17,6 @@
         "aws/aws-sdk-php": "~3.18.28"
     },
     "autoload": {
-        "psr-4": {"iamgold\\yii2\\dynamodb": "src/"}
+        "psr-4": {"iamgold\\yii2\\dynamodb\\": "src/"}
     }
 }
