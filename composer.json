@@ -1,5 +1,5 @@
 {
-    "name": "iamgold/yii2/dynamodb",
+    "name": "iamgold/yii2-dynamodb",
     "description": "This project is used to access Aws DynamoDb in Yii2.",
     "keywords": ["iamgold", "yii2", "dynamodb", "composer"],
     "type": "project",
