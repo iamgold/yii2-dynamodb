@@ -37,6 +37,13 @@ class Connection extends \yii\base\Component
     public $version = 'latest';
 
     /**
+     * @var string the class used to create new database [[Command]] objects. If you want to extend the [[Command]] class,
+     * you may configure this property to use your extended version of the class.
+     * @see createCommand
+     */
+    public $commandClass = 'iamgold\yii2\dynamodb\Command';
+
+    /**
      * @var $_dynamoDbClient
      */
     private $_dynamoDbClient;
@@ -66,7 +73,7 @@ class Connection extends \yii\base\Component
         try {
             Yii::info($token, __METHOD__);
             Yii::beginProfile($token, __METHOD__);
-            $this->_dynamoDbClient = $this->createClient();
+            $this->_dynamoDbClient = $this->createDynamoDbClient();
             Yii::endProfile($token, __METHOD__);;
         } catch (Exception $e) {
             Yii::endProfile($token, __METHOD__);
@@ -75,13 +82,40 @@ class Connection extends \yii\base\Component
     }
 
     /**
+     * Create command
+     * @param string $opertion
+     * @param array $query
+     * @return Command
+     */
+    public function createCommand($operation=null, $query=null)
+    {
+        $command = new $this->commandClass([
+            'db' => $this,
+            'operation' => $operation,
+            'query' => $query
+        ]);
+
+        return $command;
+    }
+
+    /**
      * Get original connection client.
+     *
      * @return Aws\DynamoDb\DynamoDbClient
      */
     public function getClient()
     {
         $this->open();
         return $this->_dynamoDbClient;
+    }
+
+    /**
+     * Get query build
+     * @return QueryBuilder
+     */
+    public function getQueryBuilder()
+    {
+        return new QueryBuilder;
     }
 
     /**
