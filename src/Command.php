@@ -30,6 +30,16 @@ class Command extends \yii\base\Component
     public $query = [];
 
     /**
+     * inheridoc
+     */
+    public function behaviors()
+    {
+        return [
+            ReturnSpecBehavior::className()
+        ];
+    }
+
+    /**
      * Insert a item
      * @param string $tableName
      * @param array $columns [key => value]
@@ -50,15 +60,20 @@ class Command extends \yii\base\Component
      */
     public function execute($db=null)
     {
-        if ($db!==null && !($db instanceOf Connection))
-            throw new \yii\base\UnknownClassException("This db instance is not a iamgold\yii2\dynamodb\Connection");
-        else
-            $db = $this->getDb();
+        try {
+            if ($db!==null) {
+                if (!($db instanceOf Connection))
+                    throw new \yii\base\UnknownClassException("This db instance is not a iamgold\yii2\dynamodb\Connection");
+            } else
+                $db = $this->getDb();
 
-        if (empty($this->operation))
-            throw new \Exception("This Opertion property is undefined");
+            if (empty($this->operation))
+                throw new \Exception("This Opertion property is undefined");
 
-        return $db->getClient()->{$this->operation}($this->query);
+            return $db->getClient()->{$this->operation}($this->query);
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
     /**

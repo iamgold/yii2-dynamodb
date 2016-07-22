@@ -9,7 +9,7 @@ namespace iamgold\yii2\dynamodb;
 use Aws\DynamoDb\Marshaler;
 use yii\base\InvalidParamException;
 
-class QueryBuilder extends \yii\base\Object
+class QueryBuilder extends \yii\base\Component
 {
     /**
      * @var array $marshalerOptions
@@ -31,6 +31,16 @@ class QueryBuilder extends \yii\base\Object
      * @var Marshaler $marshaler
      */
     private $marshaler = null;
+
+    /**
+     * inheridoc
+     */
+    public function behaviors()
+    {
+        return [
+            ReturnSpecBehavior::className()
+        ];
+    }
 
     /**
      * Build an insert query for dynamodb
