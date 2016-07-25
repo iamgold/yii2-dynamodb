@@ -3,7 +3,7 @@
     "description": "This project is used to access Aws DynamoDb in Yii2.",
     "keywords": ["iamgold", "yii2", "dynamodb", "composer"],
     "type": "project",
-    "version": "0.1.0",
+    "version": "0.2.1",
     "time": "2016-07-14",
     "license": "MIT",
     "support": {
