@@ -70,7 +70,8 @@ class Command extends \yii\base\Component
             if (empty($this->operation))
                 throw new \Exception("This Opertion property is undefined");
 
-            return $db->getClient()->{$this->operation}($this->query);
+            $AwsResult = $db->getClient()->{$this->operation}($this->query);
+            return new Response($AwsResult);
         } catch (Exception $e) {
             throw $e;
         }
