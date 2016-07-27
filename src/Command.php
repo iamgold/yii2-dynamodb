@@ -40,7 +40,20 @@ class Command extends \yii\base\Component
     }
 
     /**
-     * Insert a item
+     * Prepare a command for deleting an item
+     * @param string $tableName
+     * @param array $condition [key => value]
+     * @return $this
+     */
+    public function delete(string $tableName, array $condition)
+    {
+        $builder = $this->db->getQueryBuilder()->delete($tableName, $condition);
+        $this->query = $builder->getQuery();
+        $this->operation = $builder->getOperation();
+        return $this;
+    }
+    /**
+     * Prepare a command for inserting an item
      * @param string $tableName
      * @param array $columns [key => value]
      * @return $this
